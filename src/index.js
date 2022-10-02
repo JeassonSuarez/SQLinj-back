@@ -1,7 +1,7 @@
 import express from "express";
 import usuariosRoutes from "./Routes/usuarios.routes.js";
 import indexRoutes from "./Routes/index.routes.js";
-
+import { PORT } from './config.js'
 const app = express();
 
 app.use(indexRoutes);
@@ -20,5 +20,5 @@ app.use(usuariosRoutes);
 
 // app.delete('/usuario', (req, res)=>res.send('Eliminando usuarios'))
 
-app.listen(3000);
+app.listen(PORT | 3000);
 console.log('server up port 3000');
