@@ -7,7 +7,7 @@ const router = Router();
 router.get('/sesion', async(req, res)=>{
     const usuarios = await db.query('SELECT * FROM users')
     //console.log(req);
-    return res.json(usuarios)
+    res.send(usuarios)
 })
 
 export default router;
