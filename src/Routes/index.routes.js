@@ -4,9 +4,9 @@ import { db } from "../db.js";
 
 const router = Router();
 
-router.get('/hola', async(req, res)=>{
+router.get('/sesion', async(req, res)=>{
     const [usuarios] = await db.query('SELECT * FROM users')
-    res.json(usuarios.username)
+    res.json(usuarios)
 })
 
 export default router;
