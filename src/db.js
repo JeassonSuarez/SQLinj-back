@@ -1,4 +1,5 @@
 import pgPromise from 'pg-promise';
+import { DB_PORT, DB_HOST, DB_USER, DB_DATABASE, DB_PASSWORD } from './config.js'
 const pgp = pgPromise({});
-export const db = pgp('postgresql://postgres:GxyrHrO7HfJDTG8iw0yV@containers-us-west-73.railway.app:6073/railway');
+export const db = pgp(`postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`);
 
