@@ -1,8 +1,19 @@
 import express from "express";
+import cors from "cors";
 import usuariosRoutes from "./Routes/usuarios.routes.js";
 import indexRoutes from "./Routes/index.routes.js";
 import { PORT } from './config.js'
 const app = express();
+
+
+app.use(express.urlencoded({
+    extended: true
+}));
+
+app.use(express.json({
+    type:'*/*'
+}))
+app.use(cors());
 
 app.use(indexRoutes);
 app.use(usuariosRoutes);
