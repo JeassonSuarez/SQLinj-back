@@ -5,14 +5,9 @@ import indexRoutes from "./Routes/index.routes.js";
 import { PORT } from './config.js'
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(express.urlencoded({
-    extended: true
-}));
-
-app.use(express.json({
-    type:'*/*'
-}))
 app.use(cors());
 
 app.use(indexRoutes);
@@ -32,4 +27,4 @@ app.use(usuariosRoutes);
 // app.delete('/usuario', (req, res)=>res.send('Eliminando usuarios'))
 
 app.listen(PORT | 3000);
-console.log('server up port 3000');
+console.log('server up port', PORT);
