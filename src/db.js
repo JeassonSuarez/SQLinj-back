@@ -1,5 +1,27 @@
-import pgPromise from 'pg-promise';
-import { DB_PORT, DB_HOST, DB_USER, DB_DATABASE, DB_PASSWORD } from './config.js'
-const pgp = pgPromise({});
-export const db = pgp(`postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`);
+import pkg from 'oracledb';
+const config = {
+  user: 'jeasson',
+  password: 'jass',
+  connectString: 'localhost:1521'
+}
 
+export async function getUsuario (consulta) {
+  let conn
+  try {
+
+    conn = await pkg.getConnection(config)
+
+    const result = await conn.execute(consulta);
+    await conn.execute('COMMIT')
+
+    return(result)
+
+  } catch (err) {
+    console.log('Ouch!', err)
+    return err;
+  } finally {
+    if (conn) { // conn assignment worked, need to close
+      await conn.close()
+    }
+  }
+}
